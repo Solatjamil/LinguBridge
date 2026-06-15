@@ -14,6 +14,7 @@ import { ProgressDashboard } from './components/ProgressDashboard';
 import { UnitGrid } from './components/UnitGrid';
 import { DictionaryOverlay } from './components/DictionaryOverlay';
 import { VocabularySheet } from './components/VocabularySheet';
+import { NetzwerkWorkbook } from './components/NetzwerkWorkbook';
 import { GraduationCap, ChevronLeft, Loader2, Target, Trophy, BookOpen, LayoutDashboard, Sparkles, Languages, Mic, MicOff, BookMarked } from 'lucide-react';
 
 const STORAGE_KEY = 'lingu-bridge-progress-v3';
@@ -24,6 +25,7 @@ const App: React.FC = () => {
   const [selectedModule, setSelectedModule] = useState<TestModule | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel>(DifficultyLevel.INTERMEDIATE);
   const [mode, setMode] = useState<'selection' | 'curriculum' | 'practice' | 'learn' | 'dashboard' | 'vocab_book'>('selection');
+  const [vocabSubMode, setVocabSubMode] = useState<'netzwerk' | 'nouns'>('netzwerk');
   const [activeTab, setActiveTab ] = useState<'learning' | 'exams'>('learning');
   const [loading, setLoading] = useState(false);
   const [isMicEnabled, setIsMicEnabled] = useState(false); // Default to muted
@@ -405,11 +407,43 @@ const App: React.FC = () => {
             )}
           </div>
         ) : mode === 'vocab_book' ? (
-          <div>
-            <button onClick={reset} className="flex items-center gap-2 text-slate-500 font-bold mb-8 hover:text-indigo-600 transition-colors print:hidden">
-              <ChevronLeft size={20} /> Back to Courses
-            </button>
-            <VocabularySheet />
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-5 print:hidden">
+              <button onClick={reset} className="flex items-center gap-2 text-slate-500 font-extrabold hover:text-indigo-600 transition-colors">
+                <ChevronLeft size={20} /> Back to Courses
+              </button>
+              
+              <div className="flex bg-slate-100 p-1 rounded-2xl shadow-inner w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setVocabSubMode('netzwerk')}
+                  className={`flex-1 sm:flex-none px-6 py-2.5 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 transition-all ${
+                    vocabSubMode === 'netzwerk' 
+                      ? 'bg-white shadow-md text-indigo-600' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <BookOpen size={14} /> Netzwerk Neu A1 Übungsbuch
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setVocabSubMode('nouns')}
+                  className={`flex-1 sm:flex-none px-6 py-2.5 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 transition-all ${
+                    vocabSubMode === 'nouns' 
+                      ? 'bg-white shadow-md text-indigo-600' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <Sparkles size={14} /> Noun Article Poster
+                </button>
+              </div>
+            </div>
+
+            {vocabSubMode === 'netzwerk' ? (
+              <NetzwerkWorkbook />
+            ) : (
+              <VocabularySheet />
+            )}
           </div>
         ) : (
           <div>
