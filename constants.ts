@@ -57,5 +57,13 @@ export const TESTS: TestMetadata[] = [
     purpose: 'General proficiency',
     levels: 'A1-C2',
     description: 'Austrian German Language Diploma recognized internationally.'
+  },
+  {
+    id: TestId.A1_VOCAB_BOOK,
+    name: 'A1 German Vocabulary Book',
+    category: 'German',
+    purpose: 'Learn Noun Genders & Articles',
+    levels: 'A1 Beginner',
+    description: 'The official vocabulary syllabus companion extracted from the A1 German Course Flipbook [https://online.fliphtml5.com/mkzfx/phnn/]. Learn with color coding, add custom cards, and play audio pronunciations.'
   }
 ];

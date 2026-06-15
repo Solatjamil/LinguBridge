@@ -20,7 +20,8 @@ export enum TestId {
   DSH = 'DSH',
   GOETHE = 'GOETHE',
   TELC = 'TELC',
-  OESD = 'OESD'
+  OESD = 'OESD',
+  A1_VOCAB_BOOK = 'A1_VOCAB_BOOK'
 }
 
 export interface TestMetadata {

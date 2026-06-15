@@ -3,5 +3,8 @@
   "description": "A comprehensive language proficiency test preparation platform for IELTS and German certificates, offering mock exams and visual learning materials with native language support in Punjabi, Sindhi, and English.",
   "requestFramePermissions": [
     "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }
